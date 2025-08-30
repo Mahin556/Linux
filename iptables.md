@@ -1,4 +1,4 @@
-    8  sudo iptables -A INPUT -s 192.168.29.80 -j LOG --log-prefix "Dropped: "
+   ``` 8  sudo iptables -A INPUT -s 192.168.29.80 -j LOG --log-prefix "Dropped: "
     9  sudo iptables -A INPUT -s 192.168.29.80 -j DROP
    10  dmesg | grep "Dropped"
    11  dmesg --help
@@ -11,3 +11,4 @@
    18  tail -f /var/log/messages | grep "Dropped"
    19  cat /var/log/messages | grep "Dropped"
    20  tail -f /var/log/messages | grep "Dropped"
+```
