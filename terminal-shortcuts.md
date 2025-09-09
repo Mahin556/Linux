@@ -11,7 +11,11 @@
 * `Alt + Y` → Cycle through previously cut text after `Ctrl+Y`
 * `Ctrl + L` → Clear screen (same as `clear`)
 * `Ctrl + _` → Undo last editing action
-
+* `Ctrl + Shift + C` -> Copy the selected text or command
+* `Ctrl + Shift + V` -> Paste copied text or command
+* `Ctrl + Shift + N` -> Open a new terminal window
+* `Ctrl + Shift + T` -> Open a new tab in the terminal
+* `Ctrl + Tabor/Ctrl + PageDown` -> Switch between terminal tabs
 ---
 
 **Movement by words**
