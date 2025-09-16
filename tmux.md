@@ -18,6 +18,8 @@ Window: A single "tab" or screen within a session where you can run programs.
 Pane: A subdivision of a window that creates a separate, independent terminal within that window. 
 ```
 
+tmux ---> session ----> windows ---> pane
+
 ## Commands
 
 ```
@@ -73,7 +75,7 @@ By default, `Ctrl+b` is the **prefix key** before most commands. (You can change
 * `prefix %` → Split vertically (left/right)
 * `prefix "` → Split horizontally (top/bottom)
 * `prefix o` → Switch to next pane
-* `prefix q` → Show pane numbers
+* `prefix q` → Show pane numbers `prefix q 0` `prefix q 1` `prefix q 2` `prefix q 3` `prefix q 4`
 * `prefix {` → Swap current pane with previous
 * `prefix }` → Swap current pane with next
 * `prefix x` → Kill current pane
@@ -91,6 +93,7 @@ By default, `Ctrl+b` is the **prefix key** before most commands. (You can change
 * `prefix : resize-pane -L <n>` → Resize left
 * `prefix : resize-pane -R <n>` → Resize right
 * `prefix Alt+↑/↓/←/→` (if enabled) → Resize with arrow keys
+* `prefix Alt+1/2/3/4/5` control the layout
 
 ---
 
@@ -141,6 +144,91 @@ By default, `Ctrl+b` is the **prefix key** before most commands. (You can change
 * `set -g history-limit 10000` → Increase scrollback buffer
 * `bind r source-file ~/.tmux.conf \; display-message "Config reloaded!"` → Reload config shortcut
 
+---
 
+### 📄 Example `~/.tmux.conf`
+
+```bash
+# Use Ctrl+a as prefix instead of default Ctrl+b
+unbind C-b
+set -g prefix C-a
+bind C-a send-prefix
+
+# Enable mouse support (scroll, resize panes, switch windows)
+set -g mouse on
+
+# Split panes with | and -
+bind | split-window -h
+bind - split-window -v
+unbind '"'
+unbind %
+
+# Switch panes easily with Alt+arrow keys
+bind -n M-Left select-pane -L
+bind -n M-Right select-pane -R
+bind -n M-Up select-pane -U
+bind -n M-Down select-pane -D
+
+# Resize panes with Ctrl+arrow keys
+bind -n C-Left resize-pane -L 3
+bind -n C-Right resize-pane -R 3
+bind -n C-Up resize-pane -U 1
+bind -n C-Down resize-pane -D 1
+
+# Start windows and panes at 1 (not 0)
+set -g base-index 1
+setw -g pane-base-index 1
+
+# Better status bar
+set -g status-bg black
+set -g status-fg white
+set -g status-interval 5
+set -g status-left-length 30
+set -g status-right-length 90
+
+# Show session, window, and pane numbers
+set -g status-left '#[fg=green][#S] '
+set -g status-right '#[fg=yellow]%Y-%m-%d #[fg=cyan]%H:%M #[fg=magenta]#(whoami)'
+
+# Vi-style key bindings for copy mode
+setw -g mode-keys vi
+bind -T copy-mode-vi v send -X begin-selection
+bind -T copy-mode-vi y send -X copy-selection-and-cancel
+bind -T copy-mode-vi r send -X rectangle-toggle
+
+# Reload config quickly with prefix+r
+bind r source-file ~/.tmux.conf \; display-message "Config reloaded!"
+```
+
+---
+
+### 🚀 How to use
+
+1. Save the config:
+
+   ```bash
+   nano ~/.tmux.conf
+   ```
+
+   (paste the content, then save).
+2. Reload without restarting tmux:
+
+   ```bash
+   tmux source-file ~/.tmux.conf
+   ```
+
+   or press **Prefix + r** (with the above config).
+
+---
+
+### 🔥 Features in this setup
+
+* Prefix key = **Ctrl+a** (like GNU screen).
+* Mouse support (click to switch, drag to resize, scroll).
+* Easy pane splitting with `|` and `-`.
+* Intuitive navigation/resizing with arrow keys.
+* Status bar with date, time, user, and session.
+* Vi-style copy mode with **v/y/r**.
+* Reload config without killing tmux.
 
 
