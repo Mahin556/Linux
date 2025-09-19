@@ -116,8 +116,47 @@ find <path> -type f -size +1M #b=512bytes, c=bytes, k, M , G, + , -
 
 find <path> -type f -exec grep -l "example" {} + #+ allow find to pass more then 1 file to grep
 
+find /path ! -user $(whoami) #current user
 
+find /path -type f -name "*.tmp" -delete #Delete matching files (dangerous ⚠️)
 
+find /path -type f -name "*.log" -exec rm {} \; #Run a command on each file
+
+find /path -type f -name "*.tmp" -ok rm {} \; #Safer delete with confirmation
+
+find /path -type f -empty -exec rm {} \; #remove empty files
+
+find /path -type d -empty -exec rmdir {} \; #remove empty directory
+
+find /path -type f -name "*.sh" -exec ls -l {} \;
+
+find /path -type f -exec file {} \;
+
+find /path -type f -exec readlink -f {} \;
+
+find /path -type f -name "*.sh" -exec chmod +x {} \;
+
+find /path -type f -name "*.log" -exec chown john {} \;
+
+find /path -type f -exec chmod o-w {} \;
+
+find /path -type f -name "*.log" -exec gzip {} \;
+
+find /path -type f -name "*.txt" -exec tar -rvf backup.tar {} \;
+
+find /path -type f -name "*.conf" -exec grep -H "password" {} \;
+
+find /path -type f -name "*.py" -exec wc -l {} \;
+
+find /path -type f -name "*.log" -exec rm {} + #much faster
+
+find /path -type f -name "*.jpg" -exec mv {} /images/ \;
+
+find /path -xtype l -exec rm {} \;
+
+find /path -type f -size +100M -exec ls -lh {} \;
+
+find /path -type f -name "*.txt" -exec sed -i 's/foo/bar/g' {} \;
 
 
 ```
