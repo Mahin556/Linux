@@ -1,21 +1,42 @@
 ### What is Tmux?
-```How to Use 'Tmux Terminal' to Access Multiple Terminals ...Tmux is an open-source command-line utility called a "terminal multiplexer" for Unix-like operating systems that allows you to manage multiple terminal sessions, windows, and panes within a single terminal window. Its core function is to create, split, and manage multiple terminal "sessions," which can then be "detached" (left running in the background) and "reattached" later, even on a different terminal or after a network disconnection. This makes it invaluable for developers and system administrators to run long processes, work on remote servers, and organize complex workflows without losing work.```
+```
+- Tmux is an open-source command-line utility called a "terminal multiplexer" for Unix-like operating systems that allows you to manage multiple terminal sessions, windows, and panes within a single terminal window.
+- It lets you run and manage multiple terminal sessions inside a single terminal window.
+- You can split windows into panes, run different commands in each pane, and switch between them.
+- You can detach from a session (keep it running in the background) and reattach later.
+- Very useful for remote sessions and long-running tasks because it continues even if the connection drops.
+- Provides customization, session sharing, and plugin support to boost productivity.
+```
 
 ### Key features and benefits:
 ```
-Multitasking: Run multiple programs or commands side-by-side in different panes or windows within a single terminal. 
-Session management: Create and name sessions for different projects or tasks, allowing you to switch between them quickly. 
-Detaching and reattaching: Keep processes running in the background even if you close the terminal or lose your network connection. You can then reattach to the session later to pick up where you left off. 
-Remote session stability: Ideal for working on remote servers via SSH. If your connection drops, your tmux sessions continue to run on the server, and you can simply re-log in and reattach to them. 
-Increased productivity: By keeping all your work organized and accessible in one place, tmux helps reduce the need to switch between separate windows or applications. 
+Multitasking: Run multiple programs or commands side-by-side in different panes or windows within a single terminal.
+
+Session management: Create and manage sessions for different projects or tasks, allowing you to switch between them quickly.
+
+Detaching and reattaching: Keep processes running in the background even if you close the terminal or lose your network connection. You can then reattach to the session later to pick up where you left off.
+
+Window Management → Split windows (horizontally/vertically), rename them, and move between them.
+
+Configuration → Customize tmux behavior via ~/.tmux.conf.
+
+Remote session stability: Ideal for working on remote servers via SSH. If your connection drops, your tmux sessions continue to run on the server, and you can simply re-log in and reattach to them.
+
+Increased productivity: By keeping all your work organized and accessible in one place, tmux helps reduce the need to switch between separate windows or applications.
+
 Organization: Sessions, windows, and panes serve as building blocks to organize your work into logical units. 
+
+Integration → Works smoothly with tools like Vim, SSH, etc.
+
+Plugins → Extend functionality using third-party plugins.
 ```
 
-### How it works (basics):
+### Key Features of Tmux
 ```
-Session: The primary container for multiple windows. 
-Window: A single "tab" or screen within a session where you can run programs. 
-Pane: A subdivision of a window that creates a separate, independent terminal within that window. 
+- Sessions → Multiple independent sessions, detachable & reattachable.
+- Windows → Each session can have multiple windows (like tabs).
+- Panes → Split windows into multiple resizable panes for multitasking.
+- Customization → Change key bindings, status bar, and behavior.
 ```
 
 tmux ---> session ----> windows ---> pane
@@ -48,7 +69,7 @@ By default, `Ctrl+b` is the **prefix key** before most commands. (You can change
 * `tmux new -s <name>` → Start a new session with a name
 * `tmux ls` or `tmux list-sessions` → List sessions
 * `tmux attach -t <name>` or `tmux a -t <name>` → Attach to a session
-* `tmux detach` (`prefix d`) → Detach from current session
+* `prefix d` → Detach from current session
 * `tmux kill-session -t <name>` → Kill a session
 * `tmux kill-server` → Kill all sessions
 * `tmux rename-session <new-name>` (`prefix $`) → Rename current session
