@@ -157,6 +157,4 @@ find /path -xtype l -exec rm {} \;
 find /path -type f -size +100M -exec ls -lh {} \;
 
 find /path -type f -name "*.txt" -exec sed -i 's/foo/bar/g' {} \;
-
-
 ```
