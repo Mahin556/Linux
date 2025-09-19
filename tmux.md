@@ -104,6 +104,7 @@ By default, `Ctrl+b` is the **prefix key** before most commands. (You can change
 * `prefix Ctrl+o` → Rotate panes
 * `tmux split-window -h` → Split horizontally (command)
 * `tmux split-window -v` → Split vertically (command)
+* `prefix Arrow Key` -> (Left, Right, Up, Down) — Move between panes
 
 ---
 
