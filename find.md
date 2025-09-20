@@ -166,6 +166,16 @@ find /var/log -iname "*~" -o -iname "*log*" -mtime -7 -ls
 
 find / -type d -name 'img' -ipath "*public_html/example.com*" 2>/dev/null
 
+find -perm -111 -exec chmod -R 777 {} \;
+
+find / -user root -2000 -exec ls -ldb {} \; > /tmp/ckprm
+
+find directory -user root -perm -4000 -exec ls -ldb {} \; >/tmp/filename
+
+find /var/www/html -type d -exec chmod u=rwx,go=rx {} \;
+
+
+
 ```
 
 References:-
