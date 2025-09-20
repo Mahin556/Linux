@@ -253,3 +253,6 @@ openssl rand -hex 16      # Generate 16 random bytes (hex)
 ```bash
 openssl dhparam -out dhparam.pem 2048
 ```
+
+### Reference
+- https://phoenixnap.com/kb/generate-openssl-certificate-signing-request
