@@ -1,7 +1,8 @@
 # 🔑 How to Generate a CSR with OpenSSL
 
-A **Certificate Signing Request (CSR)** is a file you generate on your server before getting an SSL certificate.
-It contains your domain, organization details, and public key — which a Certificate Authority (CA) uses to issue your SSL certificate.
+- A **Certificate Signing Request (CSR)** is a file you generate on your server before getting an SSL certificate.
+- It contains your domain, organization details, and public key — which a Certificate Authority (CA) uses to issue your SSL certificate.
+
 ---
 ## 📝 Steps to Generate a CSR
 
