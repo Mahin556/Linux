@@ -157,6 +157,15 @@ find /path -xtype l -exec rm {} \;
 find /path -type f -size +100M -exec ls -lh {} \;
 
 find /path -type f -name "*.txt" -exec sed -i 's/foo/bar/g' {} \;
+
+find /var/log -iname "*~" -o -iname "*log*" -mtime +30
+
+find /var/log -iname "*~" -o -iname "*log*" -mtime -7
+
+find /var/log -iname "*~" -o -iname "*log*" -mtime -7 -ls
+
+find / -type d -name 'img' -ipath "*public_html/example.com*" 2>/dev/null
+
 ```
 
 References:-
