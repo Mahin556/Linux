@@ -16,6 +16,7 @@ useradd -D  ---> CREATE_HOME, HOME, SHELL, EXPIRE, INACTIVE, GROUP, USERGROUPS_E
 
 # Update default shell for new users
 useradd -D | grep SHELL
+useradd -D | grep -i shell
 useradd -D -s /bin/bash
 
 # Update default base dir for new users
@@ -43,6 +44,7 @@ sudo useradd -D -N
 # Enable automatic user group creation
 sudo useradd -D -U
 ```
+- https://linuxize.com/post/how-to-create-users-in-linux-using-the-useradd-command/
 
 ### useradd
 ```
@@ -64,6 +66,12 @@ useradd -m -p $(openssl passwd -1 MyPass123) john #Set an initial password (encr
 useradd -m -k /etc/skel_custom john #Use a custom skeleton directory
 
 useradd -o -u 1001 john2 #Duplicate UID (for special cases)
+
+useradd -u 1234 test_user # add user with specific userid
+
+useradd -g 1000 test_user # add group with specific groupid
+
+useradd -p test_password test_user #set a unencrypted password
 
 useradd -e 2025-12-31 john #Set account expiry date  -e, --expiredate EXPIRE_DATE
 
@@ -95,4 +103,85 @@ useradd -Z user_u john # SELinux user -Z, --selinux-user SEUSER
 
 useradd -Z user_u --selinux-range s0:c0.c1023 john # SELinux MLS range --selinux-range SERANGE
 
+usermod -a -G admins,webadmin,developers tecmint
+
+useradd -e 2014-04-27 -f 45 mansi
+
+cat /etc/passwd | grep navin
+navin:x:1002:1002::/home/navin:/bin/bash
+
+tail -1 /etc/passwd
+
+useradd -m -d /var/www/ravi -s /bin/bash -c "TecMint Owner" -U ravi
+
+useradd -m -d /var/www/tarunika -s /bin/zsh -c "TecMint Technical Writer" -u 1000 -g 100 tarunika
+
+useradd -m -d /var/www/avishek -s /usr/sbin/nologin -c "TecMint Sr. Technical Writer" -u 1019 avishek
+
+useradd -m -d /var/www/navin -k /etc/custom.skell -s /bin/tcsh -c "No Active Member of TecMint" -u 1027 navin
+
+useradd -M -N -r -s /bin/false -c "Disabled TecMint Member" clayton
+
+useradd -m -d /opt/jane jane
+
+useradd -g users -G wheel,docker john
+
 ```
+- https://www.man7.org/linux/man-pages/man8/useradd.8.html
+- https://www.geeksforgeeks.org/linux-unix/useradd-command-in-linux-with-examples/
+- https://www.tecmint.com/add-users-in-linux/
+- https://linuxize.com/post/how-to-create-users-in-linux-using-the-useradd-command/
+
+### adduser 
+```
+apt-get install adduser
+yum install adduser
+dnf install adduser
+
+adduser --version
+adduser -h
+
+adduser username
+adduser username --shell /bin/sh
+adduser username --conf custom_config.conf
+adduser username --home /home/manav/
+
+```
+- https://www.geeksforgeeks.org/linux-unix/adduser-command-in-linux-with-examples/
+
+### id
+```
+id jane
+uid=1005(jane) gid=1005(jane) groups=1005(jane)
+
+id -u jane
+1500
+
+id -un jane
+jane
+
+id -g jane
+1500
+
+id -gn jane
+users
+
+```
+- https://linuxize.com/post/how-to-create-users-in-linux-using-the-useradd-command/
+
+### passwd
+```
+passwd jane
+  Changing password for user jane.
+  New password:
+  Retype new password:
+  passwd: all authentication tokens updated successfully.
+
+```
+- https://linuxize.com/post/how-to-create-users-in-linux-using-the-useradd-command/
+
+### chage
+```
+chage -l john
+```
+- https://linuxize.com/post/how-to-create-users-in-linux-using-the-useradd-command/
