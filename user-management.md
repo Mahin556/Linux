@@ -47,7 +47,7 @@ sudo useradd -D -U
 - https://linuxize.com/post/how-to-create-users-in-linux-using-the-useradd-command/
 
 ### useradd
-```
+```bash
 useradd john #Create a raguler user with default settings
 
 useradd -m -s /bin/bash john #create user with home dir and shell
@@ -133,7 +133,7 @@ useradd -g users -G wheel,docker john
 - https://linuxize.com/post/how-to-create-users-in-linux-using-the-useradd-command/
 
 ### adduser 
-```
+```bash
 apt-get install adduser
 yum install adduser
 dnf install adduser
@@ -154,7 +154,7 @@ adduser username --home /home/manav/
 - https://www.geeksforgeeks.org/linux-unix/adduser-command-in-linux-with-examples/
 
 ### id
-```
+```bash
 id jane
 uid=1005(jane) gid=1005(jane) groups=1005(jane)
 
@@ -174,7 +174,7 @@ users
 - https://linuxize.com/post/how-to-create-users-in-linux-using-the-useradd-command/
 
 ### passwd
-```
+```bash
 passwd jane
   Changing password for user jane.
   New password:
@@ -221,13 +221,13 @@ sudo passwd -x 30 user1 #Forces password change after 30 days.
 - https://www.geeksforgeeks.org/linux-unix/passwd-command-in-linux-with-examples/
 
 ### chage
-```
+```bash
 chage -l john
 ```
 - https://linuxize.com/post/how-to-create-users-in-linux-using-the-useradd-command/
 
 ### groupadd
-```
+```bash
 sudo groupadd developers  #Create a simple group
 
 sudo groupadd -f developers  #Force creation (ignore if already exists)
@@ -254,7 +254,7 @@ sudo groupadd -R /mnt/chroot -g 1200 staging_group  #Chroot + GID
 ```
 - Create group with encrypted password
   Must use openssl or crypt to generate encrypted password.
-```
+```bash
 # Generate encrypted password:
 openssl passwd -crypt mypass
 # Example output: abcd1234
@@ -263,14 +263,14 @@ openssl passwd -crypt mypass
 sudo groupadd -p abcd1234 finance
 ```
 - Verify Group Creation
-```
+```bash
 getent group developers
 tail -n 5 /etc/group
 ```
 - https://www.geeksforgeeks.org/linux-unix/groupadd-command-in-linux-with-examples/
 
 ### groupmod
-```
+```bash
 #Rename a group
 sudo groupmod -n newgroup oldgroup
 sudo groupmod --new-name newgroup oldgroup
@@ -305,7 +305,7 @@ sudo groupmod -g 1800 -p $(openssl passwd -crypt mypass) finance  #GID + passwor
 The groupdel command is used to delete an existing group from a Linux system.
 It removes the group entry from /etc/group and /etc/gshadow.
 Only the root / superuser can use this command.
-```
+```bash
 sudo groupdel example_group  #Delete a simple group
 
 sudo groupdel -f example_group  #Forcefully delete a group (even if users still belong to it)
@@ -319,7 +319,7 @@ sudo groupdel -f -r oldgroup  #Force delete + remove associated files
 sudo groupdel -R /mnt/chroot -f staging_group  #Delete group inside chroot + force
 ```
 - Verify Group Deletion
-```
+```bash
 getent group example_group
 ```
 - https://www.geeksforgeeks.org/linux-unix/groupdel-command-in-linux-with-examples/
@@ -327,7 +327,7 @@ getent group example_group
 ### gpasswd
 The gpasswd command is used to administer groups by editing /etc/group and /etc/gshadow.
 It allows setting group passwords, adding/removing members, and assigning group administrators.
-```
+```bash
 sudo gpasswd -a alice developers  #Add a user to a group
 
 sudo gpasswd -d bob developers  #Remove a user from a group
@@ -345,10 +345,10 @@ sudo gpasswd -M charlie,david developers  #Define group members (overwrites exis
 sudo gpasswd -A alice -M bob,charlie developers  #Combine -A (administrators) and -M (members)
 ```
 Verification
-```
+```bash
 getent group developers
 ```
-```
+```bash
 sudo cat /etc/gshadow | grep developers
 ```
 - https://www.geeksforgeeks.org/linux-unix/gpasswd-command-in-linux-with-examples/
@@ -356,13 +356,13 @@ sudo cat /etc/gshadow | grep developers
 ### newgrp
 The newgrp command is used to change the current group ID (GID) of your session.
 This is useful if you need to access files or execute commands restricted to a particular group.
-```
+```bash
 newgrp developers  #Change to a Specific Group, Session’s GID changes to developers, Newly created files will belong to this group.
 newgrp - developers  #Reinitialize Environment & Change Group, Switches to developers group and reloads login environment (like a fresh login).
 newgrp  #Change Back to Default Group, returns session’s group to the default one in /etc/passwd.
 ```
 - Switch to a Password-Protected Group
-  ```
+  ```bash
   newgrp accounting
   ```
   If not a member, you’ll be asked for the group’s password (from /etc/gshadow).
@@ -370,7 +370,7 @@ newgrp  #Change Back to Default Group, returns session’s group to the default 
   Wrong password → stay in current group.
   
 - Denied Access (No Password & Not a Member)
-  ```
+  ```bash
   newgrp restricted
   ```
   If group has no password and you’re not listed as a member, access is denied.
@@ -387,7 +387,7 @@ The usermod (user modify) command is used to change or update properties of an e
   /etc/login.defs → Default login configuration
 ⚠️ Note: usermod must be executed as root (or with sudo).
 
-```
+```bash
 sudo usermod -c "This is test user" test_user  #Add a comment for a user
 
 sudo usermod -d /home/manav test_user  #Change the home directory
@@ -428,3 +428,20 @@ usermod -u 666 -g 777 john
 - https://linuxize.com/post/usermod-command-in-linux/
 - https://www.tecmint.com/usermod-command-examples/
 
+### userdel
+The userdel command is used to delete an existing user account from a Linux system. It can also remove associated files like home directories and mail spools.
+Requires: Root or sudo privileges.
+  Files affected:
+    /etc/passwd – User account info
+    /etc/shadow – Secure account info
+    /etc/group – Group memberships
+    /etc/gshadow – Secure group info
+
+```bash
+sudo userdel username  #Delete a user
+sudo userdel -f username  #Force delete a user
+sudo userdel -r username  #Delete a user and their home directory
+sudo userdel -R /mnt/chroot username  #Delete a user in a chroot environment
+sudo userdel -Z username  #Remove SELinux mapping, Ensures SELinux mappings for the user are removed.
+```
+- https://www.geeksforgeeks.org/linux-unix/userdel-command-in-linux-with-examples/
