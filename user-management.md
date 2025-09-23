@@ -351,3 +351,4 @@ getent group developers
 ```
 sudo cat /etc/gshadow | grep developers
 ```
+- https://www.geeksforgeeks.org/linux-unix/gpasswd-command-in-linux-with-examples/
