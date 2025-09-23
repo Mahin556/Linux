@@ -221,10 +221,75 @@ sudo passwd -x 30 user1 #Forces password change after 30 days.
 - https://www.geeksforgeeks.org/linux-unix/passwd-command-in-linux-with-examples/
 
 ### chage
+The chage (change age) command is used to view and modify password expiration and account aging information for a Linux user. It is useful for enforcing security policies like periodic password changes and limiting account duration.
+
+Requires: Root or sudo privileges to modify other users.
+
+Files affected: /etc/shadow (where password aging info is stored).
 ```bash
+chage username  #open a interactive mode
+
+
+# View Account Aging Information
 chage -l john
+Output shows:
+  Last password change
+  Password expires
+  Password inactive
+  Account expires
+  Minimum / maximum days between password changes
+  Warning period
+
+sudo chage -d 2024-09-01 user1 #Set Last Password Change Date
+sudo chage -l user1   # Verify
+
+chage -d 0 rheluser #Force password change at next login
+
+sudo chage -E 2025-12-31 user1 #Set Account Expiry Date
+sudo chage -l user1   # Verify
+
+sudo chage -M 90 user1   # Max 90 days between password changes
+sudo chage -m 7 user1    # Min 7 days between changes
+sudo chage -l user1      # Verify
+
+sudo chage -I 5 user1 # Set Inactivity Period After Password Expiry
+sudo chage -l user1   # Verify inactivity period
+
+chage -I -1 rheluser #Reset to default
+
+sudo chage -W 10 user1 # Set Password Expiry Warning
+sudo chage -l user1   # Verify warning period
+
+sudo chage -M 90 -m 7 -W 10 -E 2025-12-31 user1 
 ```
+- Password Aging Policy Explained
+  ```
+  Last password change date → Used as reference for expiry calculation.
+  Password expiry date → Last change + Max days.
+  Password inactive date → Expiry + Inactivity days. Locks account if password not changed.
+  Account expiry date → Absolute date when account is disabled.
+  Minimum days → Minimum days before password can be changed again.
+  Maximum days → Maximum days password is valid.
+  Warning days → Days before expiry to notify user.
+  ```
+- Example Policy
+  ```
+  User changes password on 1 Jan with policy:
+    Min days: 2
+    Max days: 20
+    Warning: 5
+    Inactive: 3
+  Result:
+    Can’t change again till 3 Jan
+    Expires on 20 Jan
+    Warning starts 16 Jan
+    Account locks 23 Jan if password not updated
+  ```
 - https://linuxize.com/post/how-to-create-users-in-linux-using-the-useradd-command/
+- https://www.geeksforgeeks.org/linux-unix/chage-command-in-linux-with-examples/
+- https://www.computernetworkingnotes.com/linux-tutorials/the-chage-command-examples-and-usages.html
+- https://www.computernetworkingnotes.com/linux-tutorials/password-aging-policy-explained-with-chage-command.html
+- https://man7.org/linux/man-pages/man1/chage.1.html
 
 ### groupadd
 ```bash
@@ -445,3 +510,4 @@ sudo userdel -R /mnt/chroot username  #Delete a user in a chroot environment
 sudo userdel -Z username  #Remove SELinux mapping, Ensures SELinux mappings for the user are removed.
 ```
 - https://www.geeksforgeeks.org/linux-unix/userdel-command-in-linux-with-examples/
+  
