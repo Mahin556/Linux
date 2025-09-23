@@ -139,11 +139,15 @@ yum install adduser
 dnf install adduser
 
 adduser --version
+
 adduser -h
 
 adduser username
+
 adduser username --shell /bin/sh
+
 adduser username --conf custom_config.conf
+
 adduser username --home /home/manav/
 
 ```
@@ -178,15 +182,25 @@ passwd jane
   passwd: all authentication tokens updated successfully.
 
 passwd --> # change password for current user
+
 sudo passwd user1 ---> # Change Another User’s Password (as root or with sudo)
+
 sudo passwd -d user1 ---> # Delete a User Password (-d)
+
 sudo passwd -e user1 ---> # Expire Password Immediately (-e)
+
 sudo passwd -i 7 user1 ---> # Set Inactive Period (-i)
+
 sudo passwd -k user1 # Keep Tokens (-k) Changes password only if it is expired, otherwise ignores request.
+
 sudo passwd -l user1 # Lock Account (-l), Locks user1’s password (they can’t log in with password). SSH keys may still work.
+
 sudo passwd -n 5 user1 # Prevents user1 from changing password again for 5 days.
+
 Quiet Mode (-q) # Suppresses messages like “Changing password for user1”.
+
 sudo passwd -r files user1 #Selects repository (useful in NIS/LDAP setups).
+
 sudo passwd -R /mnt/chroot user1 #Change Root Directory (-R), Applies password change inside /mnt/chroot environment (useful in recovery).
 
 passwd -S user1 #Password Status (-S), Shows password status. Example output:
@@ -196,8 +210,11 @@ passwd -S user1 #Password Status (-S), Shows password status. Example output:
   fields = min, max, warn, inactive days
 
 sudo passwd -a -S #Lists password status of all accounts.
+
 sudo passwd -u user1 #Unlocks password → login allowed again.
+
 sudo passwd -w 7 user1 #Warns user1 7 days before password expiry.
+
 sudo passwd -x 30 user1 #Forces password change after 30 days.
 ```
 - https://linuxize.com/post/how-to-create-users-in-linux-using-the-useradd-command/
@@ -212,16 +229,27 @@ chage -l john
 ### groupadd
 ```
 sudo groupadd developers  #Create a simple group
+
 sudo groupadd -f developers  #Force creation (ignore if already exists)
+
 sudo groupadd -g 1050 developers  #Create with specific GID
+
 sudo groupadd -f -g 1050 developers  #Force + GID (ignores duplicate GID if exists)
+
 sudo groupadd -o -g 1000 sharedgroup  #Allow non-unique GID
+
 sudo groupadd -r sysadmins  #Create system group
+
 sudo groupadd -K GID_MIN=500 -K GID_MAX=700 testers  #Override defaults (/etc/login.defs)
+
 sudo groupadd -R /mnt/chroot developers  #Use chroot environment
+
 sudo groupadd -r -g 800 syslogs  #System group + custom GID
+
 sudo groupadd -f -o -g 1000 -p $(openssl passwd -crypt mypass) devops  #Force, non-unique, and password
+
 sudo groupadd -r -K GID_MIN=200 -K GID_MAX=300 servicegroup  #Override defaults + system group
+
 sudo groupadd -R /mnt/chroot -g 1200 staging_group  #Chroot + GID
 ```
 - Create group with encrypted password
@@ -264,8 +292,11 @@ sudo groupmod -R /mnt/chroot -n staginggroup oldgroup
 sudo groupmod --root /mnt/chroot --new-name staginggroup oldgroup
 
 sudo groupmod -n devteam -g 2000 developers  #Rename + change GID
+
 sudo groupmod -o -g 1000 -n sharedgroup developers  #Non-unique GID + rename
+
 sudo groupmod -R /mnt/chroot -g 1501 admins  #Chroot + GID change
+
 sudo groupmod -g 1800 -p $(openssl passwd -crypt mypass) finance  #GID + password
 ```
 - https://www.geeksforgeeks.org/linux-unix/groupmod-command-in-linux-with-examples/
@@ -276,10 +307,15 @@ It removes the group entry from /etc/group and /etc/gshadow.
 Only the root / superuser can use this command.
 ```
 sudo groupdel example_group  #Delete a simple group
+
 sudo groupdel -f example_group  #Forcefully delete a group (even if users still belong to it)
+
 sudo groupdel -r example_group  #Delete a group and remove associated files
+
 sudo groupdel -R /mnt/chroot example_group  #Delete a group inside a chroot environment
+
 sudo groupdel -f -r oldgroup  #Force delete + remove associated files
+
 sudo groupdel -R /mnt/chroot -f staging_group  #Delete group inside chroot + force
 ```
 - Verify Group Deletion
