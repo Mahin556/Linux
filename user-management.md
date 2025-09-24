@@ -521,7 +521,7 @@ getent group test_group
 
   
 ### chage
-The chage (change age) command is used to view and modify password expiration and account aging information for a Linux user. It is useful for enforcing security policies like periodic password changes and limiting account duration.
+The chage command (short for change age) is used to manage user password expiry and account aging information. It allows system administrators to enforce password policies, set expiration dates, and manage account inactivity.
 
 Requires: Root or sudo privileges to modify other users.
 
@@ -531,7 +531,7 @@ chage username  #open a interactive mode
 
 
 # View Account Aging Information
-chage -l john
+chage -l john #List Account Aging Information
 Output shows:
   Last password change
   Password expires
@@ -590,6 +590,7 @@ sudo chage -M 90 -m 7 -W 10 -E 2025-12-31 user1
 - https://www.computernetworkingnotes.com/linux-tutorials/the-chage-command-examples-and-usages.html
 - https://www.computernetworkingnotes.com/linux-tutorials/password-aging-policy-explained-with-chage-command.html
 - https://man7.org/linux/man-pages/man1/chage.1.html
+- https://www.geeksforgeeks.org/linux-unix/chage-command-in-linux-with-examples/
 
 ### groupadd
 ```bash
