@@ -12,7 +12,168 @@
   - Types:
     - Primary Group (Default for files):- each user have it, creates with user account with same name as user name, only one primary group assign to user.
     - Secondary/Supplementary Group(Additional Permissions): user to give access to other files and system level resorces, user can be part of many secondary groups.
-      
+
+---
+---
+
+### 🔹 Linux User Management Files
+
+These files are critical for **managing users, groups, and permissions** in Linux. They help ensure security, access control, and proper administration.
+```
+/etc/passwd
+/etc/shadow
+/etc/groups
+/etc/gshadow
+/etc/login.defs
+/etc/skel/
+/etc/sudoers
+/etc/sudoers.d/
+```
+
+---
+
+#### 👤 User Information
+
+##### **/etc/passwd**
+
+* Stores **basic user account details**.
+* Each line represents a user, with fields separated by `:`.
+* Format:
+
+  ```
+  username:password:UID:GID:full_name:home_directory:shell
+  ```
+
+  * **username** → login name
+  * **password** → placeholder (`x`) if password stored in `/etc/shadow`
+  * **UID** → User ID
+  * **GID** → Primary Group ID
+  * **full\_name** → User info (GECOS field)
+  * **home\_directory** → User’s home path
+  * **shell** → Default shell (`/bin/bash`, `/bin/sh`, etc.)
+
+🔎 Example:
+
+```
+john:x:1001:1001:John Doe:/home/john:/bin/bash
+```
+
+---
+
+##### **/etc/shadow**
+
+* Stores **encrypted passwords** and **password policies**.
+* Only accessible by root for security.
+* Fields:
+
+  ```
+  username:encrypted_password:last_change:min:max:warn:inactive:expire:
+  ```
+
+  * **last\_change** → days since epoch when password was last changed
+  * **min/max** → password aging (min/max days before change)
+  * **warn** → days before expiry to warn
+  * **inactive** → days after expiry before account disabled
+  * **expire** → account expiration date
+
+---
+
+#### 👥 Group Management
+
+##### **/etc/group**
+
+* Defines **groups** and memberships.
+* Format:
+
+  ```
+  group_name:password:GID:user_list
+  ```
+
+  * **group\_name** → name of group
+  * **password** → rarely used, usually `x`
+  * **GID** → Group ID
+  * **user\_list** → comma-separated users
+
+🔎 Example:
+
+```
+developers:x:1002:alice,bob
+```
+
+---
+
+##### **/etc/gshadow**
+
+* Secure counterpart of `/etc/group`.
+* Stores **group passwords and admin roles**.
+* Format:
+
+  ```
+  group_name:encrypted_password:administrators:members
+  ```
+
+🔎 Example:
+
+```
+developers:!:carol:alice,bob
+```
+
+---
+
+#### 🔐 Privilege Control
+
+##### **/etc/sudoers**
+
+* Defines **sudo access policies**.
+* Edited safely with:
+
+  ```bash
+  visudo
+  ```
+* Controls:
+
+  * **Who** can run sudo
+  * **What commands** they can run
+  * **From where** they can run them
+
+🔎 Example:
+
+```
+alice  ALL=(ALL:ALL) ALL
+%admins ALL=(ALL) NOPASSWD: ALL
+```
+
+---
+
+#### 🏠 User Home Directory Setup
+
+##### **/etc/skel/**
+
+* Skeleton directory for **default home setup**.
+* Contents copied when a new user is created.
+* Common files:
+
+  * `.bashrc`
+  * `.profile`
+  * `.bash_logout`
+
+---
+
+#### 📜 Logs and Auditing
+
+##### **/var/log/auth.log**  *(Debian/Ubuntu)*
+
+* Records **authentication and authorization events**:
+
+  * Login attempts (success/failure)
+  * `sudo` usage
+  * Account lock/unlock events
+  * PAM messages
+
+*(On RHEL/CentOS, equivalent is `/var/log/secure`.)*
+
+---
+---
       
 ### useradd -D (/etc/default/useradd)
 ```bash
@@ -204,6 +365,11 @@ whoami
 ```
 - https://linuxize.com/post/how-to-create-users-in-linux-using-the-useradd-command/
 - https://www.cyberciti.biz/faq/unix-linux-groups-command-examples-syntax-usage/
+
+### awk
+```
+awk -F':' '{ print $1}' /etc/passwd #to get list of all users
+```
 
 ### group
 ```
