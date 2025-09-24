@@ -3,6 +3,8 @@
 
 The **`/etc/login.defs`** file is part of the **shadow password suite** and defines **site-specific configuration** for user account management, password aging, UID/GID ranges, and other account-related parameters. It’s a **text file** and typically required for smooth system operations.
 
+The /etc/login.defs file controls default values for newly created users. Changes here do not affect existing users.
+
 * **Location:** `/etc/login.defs`
 * **Purpose:** Configure defaults for user creation, login, and password policies.
 * **Format:**
@@ -29,6 +31,11 @@ These parameters define user password behavior and account aging policies. They 
 | `CHFN_RESTRICT`        | string  | Restrict which GECOS fields users can change: `f`=Full name, `r`=Room, `w`=Work phone, `h`=Home phone. `yes` = `rwh`, `no`=`frwh`. |
 
 **Practical Use:** Controls password strength, aging, and warnings, ensuring compliance with security policies.
+
+### See the password aging
+```
+chage -l username
+```
 
 ---
 
@@ -169,14 +176,14 @@ Defines default ranges for **user and group IDs** during account creation.
    * Use `SHA512` for password hashing (`ENCRYPT_METHOD=SHA512`).
    * Set reasonable password aging:
 
-     ```text
+     ```bash
      PASS_MAX_DAYS=90
      PASS_MIN_DAYS=7
      PASS_WARN_AGE=7
      ```
    * Enforce logging for `su` and failed login attempts:
 
-     ```text
+     ```bash
      SULOG_FILE=/var/log/sulog
      SYSLOG_SU_ENAB=yes
      LOG_UNKFAIL_ENAB=no
@@ -200,3 +207,85 @@ Defines default ranges for **user and group IDs** during account creation.
 * Essential parameters: `PASS_MAX_DAYS`, `PASS_MIN_DAYS`, `PASS_WARN_AGE`, `UID_MIN/MAX`, `GID_MIN/MAX`, `ENCRYPT_METHOD`.
 * Many settings are now supplemented by **PAM**, but `login.defs` remains a foundational configuration file for account management.
 * Properly configuring it ensures **secure and predictable user management** in Linux.
+
+
+#### login.defs file
+```bash
+#
+# Please note that the parameters in this configuration file control the
+# behavior of the tools from the shadow-utils component. None of these
+# tools uses the PAM mechanism, and the utilities that use PAM (such as the
+# passwd command) should therefore be configured elsewhere. Refer to
+# /etc/pam.d/system-auth for more information.
+#
+
+# *REQUIRED*
+#   Directory where mailboxes reside, _or_ name of file, relative to the
+#   home directory.  If you _do_ define both, MAIL_DIR takes precedence.
+#   QMAIL_DIR is for Qmail
+#
+#QMAIL_DIR      Maildir
+MAIL_DIR        /var/spool/mail
+#MAIL_FILE      .mail
+
+# Password aging controls:
+#
+#       PASS_MAX_DAYS   Maximum number of days a password may be used.
+#       PASS_MIN_DAYS   Minimum number of days allowed between password changes.
+#       PASS_MIN_LEN    Minimum acceptable password length.
+#       PASS_WARN_AGE   Number of days warning given before a password expires.
+#
+PASS_MAX_DAYS   180
+PASS_MIN_DAYS   1
+PASS_MIN_LEN    15
+PASS_WARN_AGE   30
+
+#
+# Min/max values for automatic uid selection in useradd
+#
+UID_MIN                   500
+UID_MAX                 60000
+
+#
+# Min/max values for automatic gid selection in groupadd
+#
+GID_MIN                   500
+GID_MAX                 60000
+
+#
+# If defined, this command is run when removing a user.
+# It should remove any at/cron/print jobs etc. owned by
+# the user to be removed (passed as the first argument).
+#
+#USERDEL_CMD    /usr/sbin/userdel_local
+
+#
+# If useradd should create home directories for users by default
+# On RH systems, we do. This option is overridden with the -m flag on
+# useradd command line.
+#
+CREATE_HOME     yes
+
+# The permission mask is initialized to this value. If not specified, 
+# the permission mask will be initialized to 022.
+UMASK           077
+
+# This enables userdel to remove user groups if no members exist.
+#
+USERGROUPS_ENAB yes
+
+# Use SHA512 to encrypt password.
+ENCRYPT_METHOD SHA512
+```
+
+#### Password Hashing
+- Stored in /etc/shadow
+- Modern Linux uses SHA512 ($6$ prefix in shadow file).
+- Example entry in /etc/shadow:
+  ```
+  user:$6$SALTv3U$HashedPasswordHere:19023:0:99999:7:::
+  ```
+
+### References:
+- https://man7.org/linux/man-pages/man5/login.defs.5.html
+- https://gist.github.com/centminmod/9488921

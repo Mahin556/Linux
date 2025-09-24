@@ -28,6 +28,7 @@ These files are critical for **managing users, groups, and permissions** in Linu
 /etc/skel/
 /etc/sudoers
 /etc/sudoers.d/
+/etc/pam.d/
 ```
 
 ---
@@ -129,6 +130,12 @@ developers:!:carol:alice,bob
 * -> [login.defs](https://github.com/Mahin556/Linux/blob/main/login.defs.md)
   ```
   ```
+
+##### **Other files**
+* [PAM](https://github.com/Mahin556/Linux/blob/main/Password-Complexity-(PAM).md)
+* [Example User Password Policy](https://github.com/Mahin556/Linux/blob/main/example-user-password-policy.md)
+* [/etc/default/useradd](https://github.com/Mahin556/Linux/blob/main/Useradd-file.md)
+
 
 ##### **/etc/sudoers**
 
