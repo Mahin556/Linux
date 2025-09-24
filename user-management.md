@@ -38,6 +38,7 @@ These files are critical for **managing users, groups, and permissions** in Linu
 
 * Stores **basic user account details**.
 * Each line represents a user, with fields separated by `:`.
+* Use `vipw` to access the file or directly vim into it.
 * Format:
 
   ```
@@ -84,6 +85,7 @@ john:x:1001:1001:John Doe:/home/john:/bin/bash
 
 * Defines **groups** and memberships.
 * Format:
+* Use `vigr` to access the file or directly vim into it.
 
   ```
   group_name:password:GID:user_list
@@ -172,6 +174,7 @@ alice  ALL=(ALL:ALL) ALL
 
 *(On RHEL/CentOS, equivalent is `/var/log/secure`.)*
 
+- https://www.geeksforgeeks.org/linux-unix/user-management-in-linux/
 ---
 ---
       
