@@ -20,7 +20,7 @@
 
 These files are critical for **managing users, groups, and permissions** in Linux. They help ensure security, access control, and proper administration.
 ```
-/etc/passwd
+/etc/passwd #database files
 /etc/shadow
 /etc/groups
 /etc/gshadow
@@ -179,9 +179,39 @@ alice  ALL=(ALL:ALL) ALL
 
 *(On RHEL/CentOS, equivalent is `/var/log/secure`.)*
 
+![alt text](/images/1_yjmsXWG-mm6PoAKhYvApPQ.gif)
+
+---
 - https://www.geeksforgeeks.org/linux-unix/user-management-in-linux/
+
+
 ---
 ---
+
+### su
+```
+su       # Use current directory
+su -     # Start in root home directory
+```
+- https://www.tecmint.com/manage-users-and-groups-in-linux/
+
+### visudo(/etc/sudoers)
+```
+visudo
+
+# User with full access
+root ALL=(ALL) ALL
+
+# User can run specific command
+tecmint ALL=/bin/yum update
+
+# User can run specific command without password
+gacanepa ALL=NOPASSWD:/bin/updatedb
+
+# Group can run all commands
+%admin ALL=(ALL) ALL
+```
+- https://www.tecmint.com/manage-users-and-groups-in-linux/
 
 ### who
 ```
@@ -760,6 +790,27 @@ usermod -o -u 1000 john  # Allow duplicate UID
 usermod -d /var/www/html -m -s /bin/bash -e 2025-12-31 -c "John Admin" -u 555 -aG wheel john
 
 usermod -u 666 -g 777 john
+
+# Set account expiry date
+usermod --expiredate YYYY-MM-DD username
+
+# Add user to supplementary groups
+usermod --append --groups group1,group2 username
+
+# Change default home directory
+usermod --home /new/home/path username
+
+# Change default shell
+usermod --shell /bin/sh username
+
+# Combine multiple options
+usermod --expiredate 2014-10-30 --append --groups root,users --home /tmp --shell /bin/sh tecmint
+
+# Lock account
+usermod --lock username
+
+# Unlock account
+usermod --unlock username
 
 ```
 - https://www.geeksforgeeks.org/linux-unix/usermod-command-in-linux-with-examples/
