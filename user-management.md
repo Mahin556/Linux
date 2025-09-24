@@ -1,3 +1,19 @@
+## User-and-group-management
+- Linux ---> multi-user environment
+- User ---> correct previliges, access.
+- Secures the system from unauthorized access.
+- Type of uses:-
+  - Root (Superuser):- Full system control. Can install software, change config files, and delete anything. Powerful but risky.
+  - Regular User:- Limited access. Can create files, run applications, but not modify system-level settings.
+  - Sudo User:- Regular user with temporary admin rights via the sudo command. Common in modern systems.
+  - System/Service Account:- Non-human accounts used by services (e.g., mysql, nginx). Limited privileges.
+
+- Groups:- collection of users, to give collective permissions.
+  - Types:
+    - Primary Group (Default for files):- each user have it, creates with user account with same name as user name, only one primary group assign to user.
+    - Secondary/Supplementary Group(Additional Permissions): user to give access to other files and system level resorces, user can be part of many secondary groups.
+      
+      
 ### useradd -D (/etc/default/useradd)
 ```bash
 useradd -D #Display default user creation settings
@@ -158,20 +174,57 @@ adduser username --home /home/manav/
 id jane
 uid=1005(jane) gid=1005(jane) groups=1005(jane)
 
+id -u #current user id
+
+id -un  #current user name
+
 id -u jane
 1500
 
 id -un jane
 jane
 
-id -g jane
+id -g  #give primary group of current user
+
+id -g jane  #give primary group id
 1500
 
-id -gn jane
+id -gn jane  #give primary group name
 users
+
+id -Gn #give group membership of current user
+
+id -Gn root #give group membership of specific user
+
+echo "The current username is '$USER'."
+printf "The current username is '%s'.\n" "$USER"
+id
+whoami
 
 ```
 - https://linuxize.com/post/how-to-create-users-in-linux-using-the-useradd-command/
+- https://www.cyberciti.biz/faq/unix-linux-groups-command-examples-syntax-usage/
+
+### group
+```
+groups --help
+groups --version
+groups  ## group membership of surrent user
+groups [username]  #to view user group membership
+groups | wc -w  #Count Number of Groups
+
+#Bash Script – Group Memberships for All Users
+for u in $(compgen -u)
+do   
+  echo "*** Group memembership for $u:"
+  groups "$u"
+  echo
+done
+
+```
+- https://www.geeksforgeeks.org/linux-unix/groups-command-in-linux-with-examples/
+- https://man7.org/linux/man-pages/man1/groups.1.html
+- https://www.cyberciti.biz/faq/unix-linux-groups-command-examples-syntax-usage/
 
 ### passwd
 ```bash
