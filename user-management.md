@@ -124,6 +124,11 @@ developers:!:carol:alice,bob
 
 #### 🔐 Privilege Control
 
+##### **/etc/login.defs**
+* Used to control the password policy and other user default settings.
+  ```
+  ```
+
 ##### **/etc/sudoers**
 
 * Defines **sudo access policies**.
@@ -177,6 +182,37 @@ alice  ALL=(ALL:ALL) ALL
 - https://www.geeksforgeeks.org/linux-unix/user-management-in-linux/
 ---
 ---
+
+### who
+```
+who  #Shows currently logged-in users (username, terminal, login time, etc.).
+
+who -H  #Show column headers
+
+who -u  #Adds idle time and PID of the user’s login process, means activity within the last minute, old means idle for more than 24h.
+
+who -a  #Shows everything: users, processes, runlevel, boot time, dead processes, etc.
+
+who -p  #Display all processes started by init
+
+who -b  #Display last system boot time
+
+who -r  #Display current runlevel
+
+who -i  #Display current init id
+
+who -d  #Display dead processes
+
+who -T  #Show users’ message status (writable terminal or not)
+
+who /var/log/wtmp  #Use specific file instead of default utmp(Shows historical login records instead of just active sessions).
+
+who -u -H  #Show who is logged in and their IP
+
+who -r -b  #Show runlevel and last boot time
+```
+- https://phoenixnap.com/kb/user-management-linux
+
       
 ### useradd -D (/etc/default/useradd)
 ```bash
@@ -442,6 +478,18 @@ sudo passwd -x 30 user1 #Forces password change after 30 days.
 - https://linuxize.com/post/how-to-create-users-in-linux-using-the-useradd-command/
 - https://www.geeksforgeeks.org/linux-unix/passwd-command-in-linux-with-examples/
 
+
+### getent
+```
+getent group
+
+getent group | awk -F: '$4 != "" {print $1 ": " $4}'
+
+getent group test_group
+```
+- https://phoenixnap.com/kb/user-management-linux
+
+  
 ### chage
 The chage (change age) command is used to view and modify password expiration and account aging information for a Linux user. It is useful for enforcing security policies like periodic password changes and limiting account duration.
 
