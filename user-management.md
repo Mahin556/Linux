@@ -678,6 +678,8 @@ sudo gpasswd -A alice,bob developers  #Assign group administrators, Makes alice 
 sudo gpasswd -M charlie,david developers  #Define group members (overwrites existing members)
 
 sudo gpasswd -A alice -M bob,charlie developers  #Combine -A (administrators) and -M (members)
+
+gpasswd -M Person1, Person2, Person3 Group1  #To add multiple user to a group
 ```
 Verification
 ```bash
@@ -687,6 +689,7 @@ getent group developers
 sudo cat /etc/gshadow | grep developers
 ```
 - https://www.geeksforgeeks.org/linux-unix/gpasswd-command-in-linux-with-examples/
+- https://www.geeksforgeeks.org/linux-unix/group-management-in-linux/
 
 ### newgrp
 The newgrp command is used to change the current group ID (GID) of your session.
