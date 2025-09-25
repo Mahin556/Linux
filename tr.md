@@ -220,8 +220,8 @@ echo "abc" | tr -t "abc" "12"
 ```
 ab3456
 ```
-
 (Since `SET2` is shorter, extra characters from `SET1` are truncated).
+
 
 ### 13. Replace Characters
 ```
@@ -229,17 +229,151 @@ echo "12345" | tr 123 987
 # 98745
 ```
 
+
 ### 14. Print Words Line by Line
 ```
 cat file.txt | tr -cs "[:alnum:]" "\n"
 ```
 (Non-alphanumeric replaced with newline)
 
+
 ### 15. Save Output to File
 ```
 cat input.txt | tr -d [:digit:] > clean.txt
 ```
 
+
+### 16. Redirect Input and Output Together
+```
+tr [a-z] [A-Z] < linux.txt > output.txt
+```
+✅ Reads directly from file → writes directly to file.
+
+
+### 17. ROT13 Cipher (Text Obfuscation)
+```
+echo "HELLO" | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+# Output: URYYB
+```
+➡️ Encode/decode ROT13.
+
+
+### 18. Remove Diacritics
+```
+echo "café" | tr -d [=e=]
+# Output: caf
+```
+➡️ Deletes "e" and its variants (é, è, ê…).
+
+### 19. Base64-Style Cleanup
+```
+cat cert.pem | tr -cd 'A-Za-z0-9+/=\n'
+```
+➡️ Keep only valid Base64 chars.
+
+
+### 19. CSV Cleanup
+```
+cat file.csv | tr -d '\r'
+```
+➡️ Remove Windows \r line endings.
+
+
+### Other
+```
+cat domains.txt | tr -s "." --->Converts ..... into a single .
+echo "My UID is $UID" | tr -d "a-zA-Z"
+echo "My UID is $UID" | tr -cd "[:digit:]\n"
+tr "\n" " " < uid.txt
+echo "Tecmint.com => Linux HowTos" | tr " " ":"
+
+echo "phone: 123-456-7890" | tr -d ":-"
+# Output: phone 1234567890
+
+echo "hellooo    wooorld" | tr -s " o"
+# Output: helo world
+
+echo "abc123!@#" | tr -cd [:digit:]
+# Output: 123
+
+echo "abcdefa" | tr -t abc 12
+# Output: 12cdef1
+
+cat file.txt | tr "\n" " "
+
+echo "password=Secret123" | tr '[:alnum:]' '*'
+# Output: ********=*******
+
+echo -e "a\tb\tc" | tr '\t' ' '
+# Output: a b c
+
+echo "user123@mail.com!" | tr -cd [:alpha:]
+# Output: usermailcom
+
+echo "a,b;c|d" | tr ',;|' '   '
+# Output: a b c d
+
+echo "abc123xyz" | tr -cd [:xdigit:]
+# Output: abc123
+
+echo "192.168.1.100" | tr -d "0-9"
+# Output: ...
+```
+
+### Password Generation
+- Generates a 12-character password with letters and digits.
+  ```
+  < /dev/urandom tr -dc 'A-Za-z0-9' | head -c 12 
+  ```
+  Output:
+  ```
+  aB9xT2LmQ7kz
+  ```
+
+- Generates a 16-character strong password including symbols.
+  ```
+  < /dev/urandom tr -dc 'A-Za-z0-9!@#$%^&*()_+=' | head -c 16
+  ```
+  Output:
+  ```
+  R@7f%kP!9u$X2e^d
+  ```
+
+- 20-character password from hex digits.
+  ```
+  < /dev/urandom tr -dc 'A-Fa-f0-9' | head -c 20
+  ```
+  Output:
+  ```
+  4dA7c2Bf90eE18Da7C91
+  ```
+
+- Human-Friendly (Remove Ambiguous Chars)
+  ```
+  < /dev/urandom tr -dc 'A-HJ-NP-Za-km-z2-9' | head -c 12
+  ```
+  Output:
+  ```
+  X7h9KdPw3ZrL
+  ```
+
+- Passphrase-Style (Words Separated by -)
+  ```
+  < /dev/urandom tr -dc 'a-z' | fold -w 6 | head -n 4 | paste -sd '-'
+  ```
+  Output:
+  ```
+  qwerty-asdfgh-zxcvbn-poiuio
+  ```
+
+- Base64 Random Password
+  ```
+  head -c 12 /dev/urandom | base64
+  ```
+  Output:
+  ```
+  Xy8jdklZV+f4Qw==
+  ```
 ---
 
 ## 🔹 Summary Cheat Sheet
