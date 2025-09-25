@@ -32,6 +32,11 @@ curl [options] [URL]
 * **[URL]** → Resource to fetch or interact with.
 
 ---
+* Install
+```
+sudo apt install curl
+```
+---
 
 ## **1. Core Usage**
 
@@ -63,6 +68,8 @@ curl --silent ftp://ftp.example.com/file.zip # Silent
 ---
 
 ```
+curl [url] > [local-file]
+
 curl -o hello.zip ftp://speedtest.tele2.net/1MB.zip ---> Downloaded file to the local host with the specified name in parameters.
 
 curl -O ftp://speedtest.tele2.net/1MB.zip  ---> Downloads the file and saves it with the same name as in the URL.
@@ -336,6 +343,376 @@ curl dict://dict.org/d:curl
 
 # Fetch local file
 curl file:///home/user/document.txt
+```
+
+### Options
+```
+--abstract-unix-socket <path>
+--alt-svc <parameters>
+--anyauth
+-a, --append
+--aws-sigv4 <provider[:region[:service]]>
+--basic
+--cacert <file>
+--capath <dir>
+--cert-status
+--cert-type <type>
+-E, --cert <certificate[:password]>
+--ciphers <list>
+--compressed-ssh
+--compressed
+-K, --config <file>
+--connect-timeout <seconds>
+--connect-to <HOST1:PORT1:HOST2:PORT2>
+-C, --continue-at <offset>
+-c, --cookie-jar <filename>
+-b, --cookie <data|filename>
+--create-dirs
+--create-file-mode <mode>
+--crlf
+--crlfile <file>
+--curves <algorithm list>
+--data-ascii <data>
+--data-binary <data>
+--data-raw <data>
+--data-urlencode <data>
+-d, --data <data>
+--delegation <LEVEL>
+--digest
+--disable-eprt
+--disable-epsv
+-q, --disable
+--disallow-username-in-url
+--dns-interface <interface>
+--dns-ipv4-addr <address>
+--dns-ipv6-addr <address>
+--dns-servers <addresses>
+--doh-cert-status
+--doh-insecure
+--doh-url <URL>
+-D, --dump-header <filename>
+--egd-file <file>
+--engine <name>
+--etag-compare <file>
+--etag-save <file>
+--expect100-timeout <seconds>
+-f, --fail
+-F, --form <name=content>
+--fail-early
+--fail-with-body
+--false-start
+--form-string <name=string>
+--ftp-account <data>
+--ftp-alternative-to-user <command>
+--ftp-create-dirs
+--ftp-method <method>
+--ftp-pasv
+-P, --ftp-port <address>
+--ftp-pret
+--ftp-skip-pasv-ip
+--ftp-ssl-ccc-mode <mode>
+--ftp-ssl-ccc
+--ftp-ssl-control
+-G, --get
+-g, --globoff
+--happy-eyeballs-timeout-ms <ms>
+--haproxy-protocol
+-I, --head
+-H, --header <header/@file>
+-h, --help <category>
+--hostpubmd5 <md5>
+--hsts <file>
+--http0.9
+-0, --http1.0
+--http1.1
+--http2-prior-knowledge
+--http2
+--http3
+--ignore-content-length
+-i, --include
+-k, --insecure
+--interface <name>
+-4, --ipv4
+-6, --ipv6
+-j, --junk-session-cookies
+--keepalive-time <seconds>
+--key-type <type>
+--key <file>
+--krb <level>
+--libcurl <file>
+--limit-rate <speed>
+-l, --list-only
+--local-port <range>
+--location-trusted
+-L, --location
+--login-options <options>
+--mail-auth <address>
+--mail-from <address>
+--mail-rcpt-allowfails
+--mail-rcpt <address>
+-M, --manual
+--max-filesize <bytes>
+--max-redirs <num>
+-m, --max-time <seconds>
+--metalink
+-n, --netrc
+-N, --no-buffer
+--negotiate
+--netrc-file <file>
+--netrc-optional
+-:, --next
+--no-alpn
+--no-keepalive
+--no-npn
+--no-progress-meter
+--no-sessionid
+--noproxy <list>
+--ntlm
+--ntlm-wb
+-o, --output <file>
+--oauth2-bearer <token>
+--output-dir <dir>
+--parallel-immediate
+--parallel-max <num>
+-Z, --parallel
+--pass <phrase>
+--path-as-is
+--pinnedpubkey <hashes>
+--post301
+--post302
+--post303
+--preproxy [protocol://]host[:port]
+-#, --progress-bar
+--proto-default <protocol>
+--proto-redir <protocols>
+--proto <protocols>
+--proxy-anyauth
+--proxy-basic
+--proxy-cacert <file>
+--proxy-capath <dir>
+--proxy-cert-type <type>
+--proxy-cert <cert[:passwd]>
+--proxy-ciphers <list>
+--proxy-crlfile <file>
+--proxy-digest
+--proxy-header <header/@file>
+--proxy-insecure
+--proxy-key-type <type>
+--proxy-key <file>
+--proxy-negotiate
+--proxy-ntlm
+--proxy-pass <phrase>
+--proxy-pinnedpubkey <hashes>
+--proxy-service-name <name>
+--proxy-ssl-allow-beast
+--proxy-ssl-auto-client-cert
+--proxy-tls13-ciphers <list>
+--proxy-tlsauthtype <type>
+--proxy-tlspassword <string>
+--proxy-tlsuser <name>
+--proxy-tlsv1
+-U, --proxy-user <user:pass>
+-x, --proxy [protocol://]host[:port]
+--proxy1.0 <host[:port]>
+-p, --proxytunnel
+--pubkey <key>
+-Q, --quote <command>
+--random-file <file>
+-r, --range <range>
+--raw
+-e, --referer <URL>
+-J, --remote-header-name
+-O, --remote-name
+--remote-name-all
+-R, --remote-time
+--request-target <path>
+-X, --request <command>
+--resolve <host:port:addr>
+--retry-all-errors
+--retry-connrefused
+--retry-delay <seconds>
+--retry-max-time <seconds>
+--retry <num>
+--sasl-authzid <identity>
+--sasl-ir
+--service-name <name>
+-s, --silent
+-S, --show-error
+--socks4 <host[:port]>
+--socks4a <host[:port]>
+--socks5-basic
+--socks5-gssapi-nec
+--socks5-gssapi-service <name>
+--socks5-gssapi
+--socks5-hostname <host[:port]>
+--socks5 <host[:port]>
+-Y, --speed-limit <speed>
+-y, --speed-time <seconds>
+--ssl-allow-beast
+
+```
+
+### Other commands
+Perfect 👍 You don’t just want the list of options — you want the **exact curl command syntax for each option** so you can try them directly.
+
+Since there are **hundreds of options**, I’ll generate them **group by group** so it’s usable.
+
+Here’s **Part 1 (till `--ssl-allow-beast`)** with ready-to-run examples:
+
+---
+
+#### 🔹 General Usage Examples
+
+```bash
+curl https://example.com
+```
+
+---
+
+#### 🔹 Authentication
+
+```bash
+curl --anyauth https://example.com
+curl --basic -u user:pass https://example.com
+curl --digest -u user:pass https://example.com
+curl --negotiate -u : https://example.com
+curl --ntlm -u user:pass https://example.com
+curl --ntlm-wb -u user:pass https://example.com
+curl --aws-sigv4 "aws:region:service" https://example.com
+curl --oauth2-bearer "TOKEN" https://example.com
+curl -U user:pass --proxy-anyauth http://proxy:8080 https://example.com
+```
+
+---
+
+#### 🔹 Certificates / SSL
+
+```bash
+curl --cacert myca.pem https://example.com
+curl --capath /etc/ssl/certs https://example.com
+curl --cert mycert.pem --key mykey.pem https://example.com
+curl --cert-type PEM --cert cert.pem https://example.com
+curl --crlfile revoked.pem https://example.com
+curl --key-type PEM --key private.key https://example.com
+curl --insecure https://example.com
+curl --ssl-allow-beast https://example.com
+curl --tlsv1.2 https://example.com
+curl --pinnedpubkey sha256//base64== https://example.com
+```
+
+---
+
+#### 🔹 Cookies
+
+```bash
+curl -b "name=value" https://example.com
+curl -b cookies.txt https://example.com
+curl -c cookies.txt https://example.com
+curl -j -b cookies.txt https://example.com
+```
+
+---
+
+#### 🔹 Data Sending
+
+```bash
+curl -d "foo=bar&x=1" https://example.com/post
+curl --data-raw '{"name":"mahin"}' -H "Content-Type: application/json" https://example.com/api
+curl --data-binary @file.json https://example.com/upload
+curl --data-urlencode "query=hello world" https://example.com/search
+curl --data-ascii "line1\nline2" https://example.com
+```
+
+---
+
+#### 🔹 File Upload (Forms)
+
+```bash
+curl -F "file=@test.txt" https://example.com/upload
+curl --form-string "msg=hello" https://example.com/post
+```
+
+---
+
+#### 🔹 FTP / SFTP
+
+```bash
+curl ftp://example.com/file.txt
+curl -u user:pass -T upload.txt ftp://example.com/
+curl --ftp-create-dirs -T newfile.txt ftp://example.com/path/
+curl --ftp-method nocwd ftp://example.com/dir/
+curl -l ftp://example.com/   # list only
+```
+
+---
+
+#### 🔹 Headers
+
+```bash
+curl -H "Accept: application/json" https://example.com
+curl -H @headers.txt https://example.com
+curl -e "https://google.com" https://example.com
+curl -A "MyCustomAgent/1.0" https://example.com
+```
+
+---
+
+#### 🔹 Request Modifiers
+
+```bash
+curl -X GET https://example.com
+curl -X POST -d "a=1" https://example.com
+curl -X DELETE https://example.com/item/1
+curl -X PUT -d "name=test" https://example.com/item/1
+curl --request-target "/custom/path" https://example.com
+```
+
+---
+
+#### 🔹 Redirects
+
+```bash
+curl -L https://short.url
+curl --max-redirs 5 https://example.com
+curl --location-trusted -u user:pass https://example.com
+```
+
+---
+
+#### 🔹 Output
+
+```bash
+curl -o file.txt https://example.com
+curl -O https://example.com/file.txt
+curl -OJ https://example.com/file.txt   # use server filename
+curl -D headers.txt https://example.com
+curl -s https://example.com   # silent
+curl -S https://example.com   # show error
+curl -# -O https://example.com/file.zip  # progress bar
+```
+
+---
+
+#### 🔹 Networking
+
+```bash
+curl --interface eth0 https://example.com
+curl -4 https://example.com
+curl -6 https://example.com
+curl --noproxy localhost,127.0.0.1 https://example.com
+curl --resolve example.com:443:1.2.3.4 https://example.com
+```
+
+---
+
+#### 🔹 Retry / Timeout
+
+```bash
+curl --connect-timeout 5 https://example.com
+curl -m 10 https://example.com
+curl --retry 3 https://example.com
+curl --retry-delay 5 --retry 3 https://example.com
+curl --retry-max-time 30 --retry 5 https://example.com
 ```
 
 ---
