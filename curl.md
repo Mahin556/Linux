@@ -42,6 +42,11 @@ curl https://example.com/
 curl https://www.geeksforgeeks.org/
 ```
 
+* Multiple URLs can be written as sets like:
+```bash
+curl http://site.{one, two, three}.com
+```
+
 * With numeric sequences:
 
 ```bash
