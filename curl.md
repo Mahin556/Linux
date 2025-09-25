@@ -62,6 +62,23 @@ curl --silent ftp://ftp.example.com/file.zip # Silent
 
 ---
 
+```
+curl -o hello.zip ftp://speedtest.tele2.net/1MB.zip ---> Downloaded file to the local host with the specified name in parameters.
+
+curl -O ftp://speedtest.tele2.net/1MB.zip  ---> Downloads the file and saves it with the same name as in the URL.
+
+curl -T uploadfile.txt ftp://example.com/upload/ ---> To upload a file to a server, for example using FTP (File Transfer Protocol).
+
+curl -u username:password https://example.com//api ---> To authenticate with username and password
+
+curl --limit-rate [value] [URL] ---> Limits the upper bound of the rate of data transfer
+curl --limit-rate 1000K -O ftp://speedtest.tele2.net/1MB.zip
+
+curl -u {username}:{password} -T {filename} {FTP_Location}
+```
+
+---
+
 ## **2. Major Options**
 
 Here’s a structured table of many important options:
@@ -330,9 +347,4 @@ curl file:///home/user/document.txt
 * [Options timeline](https://curl.se/docs/optionsall.html)
 * [Everything curl](https://everything.curl.dev/cmdline/help.html)
 * [HTTP scripting guide](https://curl.se/docs/httpscripting.html)
-
----
-
-✅ This is the **final merged, structured, no-detail-left-out `curl` reference**.
-
-Would you like me to now turn this into a **one-page visual PDF cheat sheet** (tables + diagrams for options & use cases)?
+* [GFG](https://www.geeksforgeeks.org/linux-unix/curl-command-in-linux-with-examples/)
