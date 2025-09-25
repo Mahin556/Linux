@@ -726,3 +726,4 @@ curl --retry-max-time 30 --retry 5 https://example.com
 * [HTTP scripting guide](https://curl.se/docs/httpscripting.html)
 * [GFG](https://www.geeksforgeeks.org/linux-unix/curl-command-in-linux-with-examples/)
 * https://phoenixnap.com/kb/curl-command
+* https://phoenixnap.com/kb/curl-user-agent
