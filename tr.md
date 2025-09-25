@@ -257,3 +257,4 @@ cat input.txt | tr -d [:digit:] > clean.txt
 
 ### References
 - https://www.geeksforgeeks.org/linux-unix/tr-command-in-unix-linux-with-examples/
+- https://phoenixnap.com/kb/linux-tr
