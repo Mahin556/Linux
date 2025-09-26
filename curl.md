@@ -80,6 +80,9 @@ curl -u username:password https://example.com//api ---> To authenticate with use
 
 curl --limit-rate [value] [URL] ---> Limits the upper bound of the rate of data transfer
 curl --limit-rate 1000K -O ftp://speedtest.tele2.net/1MB.zip
+This throttles the maximum download speed to 1000K (≈ 1000 kilobytes per second, ~1 MB/s).
+It does not guarantee constant speed—it just enforces an upper bound.
+✅ Prevents curl from consuming your full network bandwidth.
 
 curl -u {username}:{password} -T {filename} {FTP_Location}
 ```
