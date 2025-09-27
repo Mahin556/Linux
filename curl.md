@@ -730,3 +730,4 @@ curl --retry-max-time 30 --retry 5 https://example.com
 * [GFG](https://www.geeksforgeeks.org/linux-unix/curl-command-in-linux-with-examples/)
 * https://phoenixnap.com/kb/curl-command
 * https://phoenixnap.com/kb/curl-user-agent
+* https://www.digitalocean.com/community/tutorials/workflow-downloading-files-curl
