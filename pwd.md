@@ -64,3 +64,4 @@ alias pwd='pwd -P'; echo "alias pwd='pwd -P'" >> ~/.bashrc
 
 ### References:
 - https://www.geeksforgeeks.org/linux-unix/pwd-command-in-linux-with-examples/
+- https://phoenixnap.com/kb/pwd-linux
