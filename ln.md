@@ -112,6 +112,24 @@ ln -s /var/log logs_link
 ln -sv file1.txt shortcut.txt
 ```
 
+6. **Unlink a symlink**
+```bash
+unlink <path-to-symlink>
+```
+
+7. **To remove the symlink**
+```bash
+rm <path-to-symlink>
+```
+
+8. **Finding a deleted and broken symlink**
+```bash
+find /home/james -xtype l
+```
+```bash
+find /home/james -xtype l -delete
+```
+
 ---
 
 ## **Checking Links**
@@ -157,3 +175,5 @@ readlink shortcut.txt
 * Options: `-s` (soft), `-f` (force), `-i` (interactive), `-v` (verbose), `-n` (don’t follow symlink).
 
 
+### References:
+- https://www.freecodecamp.org/news/symlink-tutorial-in-linux-how-to-create-and-remove-a-symbolic-link/
