@@ -793,4 +793,6 @@ Content-Type: text/html; charset=UTF-8
 
 Most modern sites use **HTTPS (port 443)**, so plain Netcat may return redirects or 404 pages — but this example demonstrates the **basic working of HTTP over TCP**.
 
-
+### References:
+- https://phoenixnap.com/kb/nc-command
+- https://phoenixnap.com/kb/ping-specific-port
