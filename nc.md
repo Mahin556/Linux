@@ -718,3 +718,79 @@ curl http://<your_ip>:1234/doesnotexist.html
 [ERR] Missing: missing.html
 -------------------------------------------
 ```
+
+
+### **Simple Chat Server Using Netcat**
+Netcat can be used to create a **simple real-time chat system** between two devices over the network.
+**Step 1:** Start the chat server on **Device 1** (Bob):
+
+```bash
+awk -W interactive '$0="Bob: "$0' | nc -lv 1234
+```
+
+* `awk -W interactive` makes `awk` send output immediately.
+* The command prefixes every line you type with `"Bob: "`.
+* `nc -lv 1234` starts Netcat in **listening mode** on port **1234**.
+
+When Device 1 runs this, it waits for a connection.
+
+---
+
+**Step 2:** Connect from **Device 2** (Alice):
+
+```bash
+awk -W interactive '$0="Alice: "$0' | nc 10.0.2.4 1234
+```
+
+* Replace **10.0.2.4** with the IP address of Device 1.
+* Each line Alice types is prefixed with `"Alice: "`.
+
+---
+
+**Step 3:** Chat between devices
+
+* Type messages on either side to send them instantly.
+* Bob’s terminal shows messages from Alice, and Alice’s terminal shows Bob’s responses.
+* Each user sees only the *other person’s* messages (their own input doesn’t echo).
+
+Example output:
+
+```
+Alice: Hi Bob!
+Bob: Hey Alice, how are you?
+Alice: Doing great! Testing Netcat chat.
+```
+
+This demonstrates how Netcat can be used for **simple peer-to-peer chat communication** over TCP.
+
+---
+
+### **Send an HTTP Request Using Netcat**
+
+You can also use Netcat to send **raw HTTP requests** to a web server.
+
+**Example:**
+
+```bash
+printf "GET / HTTP/1.0\r\n\r\n" | nc -v google.com 80
+```
+
+* `printf` sends an HTTP GET request.
+* `nc -v google.com 80` connects to Google’s web server on port **80** (HTTP).
+* The response prints the HTTP headers and part of the page content.
+
+**Sample Output:**
+
+```
+GET / HTTP/1.0
+Host: google.com
+Connection: close
+
+HTTP/1.0 302 Found
+Location: http://www.google.com/
+Content-Type: text/html; charset=UTF-8
+```
+
+Most modern sites use **HTTPS (port 443)**, so plain Netcat may return redirects or 404 pages — but this example demonstrates the **basic working of HTTP over TCP**.
+
+
