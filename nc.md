@@ -796,3 +796,5 @@ Most modern sites use **HTTPS (port 443)**, so plain Netcat may return redirects
 ### References:
 - https://phoenixnap.com/kb/nc-command
 - https://phoenixnap.com/kb/ping-specific-port
+- https://www.geeksforgeeks.org/linux-unix/practical-uses-of-ncnetcat-command-in-linux/
+- https://www.digitalocean.com/community/tutorials/how-to-use-netcat-to-establish-and-test-tcp-and-udp-connections
