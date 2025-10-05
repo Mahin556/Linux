@@ -20,26 +20,35 @@
   ```
 
 ### Other Useful Options
-| Option      | Description                                     |
-| ----------- | ----------------------------------------------- |
-| `-4`        | Use IPv4 only                                   |
-| `-6`        | Use IPv6 only                                   |
-| `-U/--unixsock |  Use Unix domain sockets                     |
+| Option(s)                           | Description                                               | Notes / Example                                                          |
+| ----------------------------------- | --------------------------------------------------------- | ------------------------------------------------------------------------ |
+| `-4`                                | Force IPv4 only                                           | `nc -4 -v example.com 80`                                                |
+| `-6`                                | Force IPv6 only                                           | `nc -6 -v example.com 80`                                                |
+| `-U`, `--unixsock`                  | Use a Unix domain socket                                  | `nc -U /var/run/mysock` (implementation-dependent)                       |
+| `-l`, `--listen`                    | Listen for incoming connections (server mode)             | `nc -l -p 1234`                                                          |
+| `-p <port>`, `--source-port <port>` | Local/source port to bind to                              | `nc -l -p 5555` or `nc -p 4444 host 80`                                  |
+| `-s <host>`, `--source <host>`      | Bind outgoing connection to a specific local IP/interface | `nc -s 192.168.1.10 host 80`                                             |
+| `-u`                                | Use UDP instead of TCP                                    | `nc -u -l -p 53`                                                         |
+| `-v`, `--verbose`                   | Verbose output                                            | `nc -v host 22`                                                          |
+| `-vv`                               | Very verbose (extra detail)                               | `nc -vv host 22`                                                         |
+| `-k`, `--keep-open`                 | Keep listening after handling a connection                | `nc -l -k -p 8080` (not in all builds)                                   |
+| `-z`                                | Zero-I/O mode (scan only; do not send data)               | `nc -zv host 1-1024`                                                     |
+| `-g <hop,hop,...>`                  | Set loose source routing hops (IPv4)                      | Rarely used; `-g 1.2.3.4,5.6.7.8` (implementation-specific)              |
+| `-w <secs>`                         | Timeout for connects and final net reads                  | `nc -w 3 host 80`                                                        |
+| `-n`                                | Do not resolve DNS (use numeric IPs)                      | `nc -n 8.8.8.8 53`                                                       |
+| `-e <command>`                      | Execute command after connection (pipes stdin/stdout)     | `nc -l -p 4444 -e /bin/bash` — often disabled for security               |
+| `-C`                                | Send CRLF as line-ending                                  | Useful for some text protocols (implementation-specific)                 |
+| `-N`                                | Shutdown socket after EOF on stdin                        | Signals EOF to remote after sending input (some builds)                  |
+| `-P <proxy>` / `-X <proxy-type>`    | Proxy support (ncat / enhanced builds)                    | `ncat --proxy 10.0.0.1:8080 --proxy-type http host 80`                   |
+| `--send-only` / `--recv-only`       | Restrict direction of data flow (ncat/enhanced builds)    | `ncat --send-only host 80`                                               |
+| `--version` / `--help`              | Show version or help text                                 | `nc --help` or `nc --version`                                            |
+| (no flag)                           | Basic connect (client)                                    | `nc host 80` connects TCP by default                                     |
+| (stdin redirection)                 | Send file / receive file                                  | Sender: `nc -l -p 5555 < file.txt` Receiver: `nc sender 5555 > file.txt` |
 
-| `-l/--listen`        | 	Listens for connections instead of using connect mode.                                     |
-| `-p/--source-port <port>` | Local port to use                               |
-| `-s/--source <host>`      | 	Binds the Netcat host to <host>               |
-| `-u/--upd`        | Use UDP instead of TCP                          |
-| `-v/--verbose`        | Verbose mode (show more info)                   |
-|  `-k/--keep-open`       | Keeps the connection open for multiple simultaneous connections |
-| `-vv`       | Very verbose                                    |
-| `-z`        | Zero-I/O mode (just scan, no data sent), Report connection status without establishing a connection.        |
-| `-g <hop1, hop2,...>` |   Set hops for loose source routing in IPv4. Hops are IP addresses or hostnames  |
-| `-w <secs>` | Timeout for connects and final net reads        |
-| `-n`        | Don’t resolve DNS (use IPs only)                |
-| `-4`        | Force IPv4                                      |
-| `-6`        | Force IPv6                                      |
-| `-e <cmd>`  | Execute command after connection (if supported) |
+* Notes:
+  - Multiple nc implementations exist (e.g., netcat-traditional, OpenBSD nc, ncat from Nmap). Flags and features differ between them — especially -e, -k, --unixsock, proxy flags, and -g.
+  - Check your system: nc --help or man nc to confirm which options your binary supports.
+  - -e (remote command execution) is dangerous and often removed from secure builds — use only in controlled lab environments.
 
 
 ### Commands
