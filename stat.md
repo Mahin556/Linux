@@ -131,12 +131,12 @@ The information we get for the filesystem from the stat
  - Namelen: The maximum length (number of characters) of a file name.
  - Fundamental block size: Total size of each block on the file system.
  - Blocks:
-  - Total: Total number of blocks in the file system
-  - Free: Total number of free blocks in the file system
-  - Available: Total number of free blocks available for non-root users
+   - Total: Total number of blocks in the file system
+   - Free: Total number of free blocks in the file system
+   - Available: Total number of free blocks available for non-root users
  - Inodes:
-  - Total: Total number of inodes in the file system.
-  - Free: Total number of free inodes in the file system.
+   - Total: Total number of inodes in the file system.
+   - Free: Total number of free inodes in the file system.
 
 ---
 
