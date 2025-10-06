@@ -435,3 +435,5 @@ Birth:  2025-10-05 21:48:00.000000000 +0530
 Here, `+0530` indicates **Indian Standard Time (5 hours 30 minutes ahead of UTC)**.
 
 
+### References:
+- https://www.geeksforgeeks.org/linux-unix/stat-command-in-linux-with-examples/
