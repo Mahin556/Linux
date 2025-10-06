@@ -141,8 +141,29 @@ The information we get for the filesystem from the stat
 ---
 ```bash
 stat locale.conf  login.defs
+```
 
+## Display Information in Terse Form
+The stat command can produce terse (concise) output using the -t option.
+This output contains all essential file information but without formatting (no line breaks, no extra spaces, no labels).
+```bash
+stat -t MyFile
 
+MyFile 1024 8 4096 803 393219 1 1000 1000 100644 0 2025-10-07 17:12:55.000000000 +0530 2025-10-06 12:33:40.000000000 +0530 2025-10-06 12:33:40.000000000 +0530 2025-10-06 12:30:00.000000000 +0530
+```
+🔹 Explanation:
+   - MyFile → filename
+   - 1024 → size in bytes
+   - 8 → blocks allocated
+   - 4096 → I/O block size
+   - 803 → device number (hex/decimal)
+   - 393219 → inode number
+   - 1 → number of hard links
+   - 1000 1000 → user ID and group ID
+   - 100644 → access permissions in octal
+   - The remaining fields → access, modify, change, and birth timestamps
+ 🧠 Use Case:
+  This terse format is very handy for scripts, where you need compact data to parse programmatically.
 ---
 
 ### 🧰 Useful Practical Examples
@@ -437,3 +458,5 @@ Here, `+0530` indicates **Indian Standard Time (5 hours 30 minutes ahead of UTC)
 
 ### References:
 - https://www.geeksforgeeks.org/linux-unix/stat-command-in-linux-with-examples/
+- https://phoenixnap.com/kb/linux-stat
+- https://man7.org/linux/man-pages/man1/stat.1.html
