@@ -1,6 +1,7 @@
 ### 🧠 What is `stat`?
 
 * The `stat` command in Linux **displays detailed information about a file or file system**.
+  * File size, permission, ownership, timestamp, 
 * Unlike `ls -l`, which gives a short summary, `stat` shows **metadata** — such as inode number, permissions, timestamps, file type, links, and more.
 
 ---
