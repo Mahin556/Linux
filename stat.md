@@ -139,6 +139,11 @@ The information we get for the filesystem from the stat
    - Free: Total number of free inodes in the file system.
 
 ---
+```bash
+stat locale.conf  login.defs
+
+
+---
 
 ### 🧰 Useful Practical Examples
 
