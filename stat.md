@@ -125,6 +125,18 @@ Block size: 4096       Fundamental block size: 4096
 Blocks: Total: 30531533   Free: 17671569   Available: 16230000
 Inodes: Total: 7766016    Free: 7603212
 ```
+The information we get for the filesystem from the stat 
+ File: The name of provided file.
+ ID: File system ID in hexadecimal format.
+ Namelen: The maximum length (number of characters) of a file name.
+ Fundamental block size: Total size of each block on the file system.
+ Blocks:
+ Total: Total number of blocks in the file system
+ Free: Total number of free blocks in the file system
+ Available: Total number of free blocks available for non-root users
+ Inodes:
+ Total: Total number of inodes in the file system.
+ Free: Total number of free inodes in the file system.
 
 ---
 
