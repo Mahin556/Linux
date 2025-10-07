@@ -453,3 +453,10 @@ sudo umount /mnt/my_chroot/sys
 | Verify                    | `grep sara /mnt/my_chroot/etc/passwd`                                                 |
 | Cleanup                   | `sudo umount /mnt/my_chroot/{dev,proc,sys}`                                           |
 
+
+
+### References
+- https://www.geeksforgeeks.org/linux-unix/chsh-command-in-linux-with-examples/
+- https://phoenixnap.com/kb/chsh-command
+- https://man7.org/linux/man-pages/man1/chsh.1.html
+- https://www.tutorialspoint.com/unix_commands/chsh.htm
