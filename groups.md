@@ -235,6 +235,23 @@ Shows members of the `sudo` and `devteam` groups.
   groups user | grep sudo
   ```
 * Confirm group membership after running `usermod -aG`.
+---
+
+```bash
+groups --help
+groups --version
+groups  ## group membership of surrent user
+groups [username]  #to view user group membership
+groups | wc -w  #Count Number of Groups
+
+#Bash Script – Group Memberships for All Users
+for u in $(compgen -u)
+do   
+  echo "*** Group memembership for $u:"
+  groups "$u"
+  echo
+done
+```
 
 ---
 
