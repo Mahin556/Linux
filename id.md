@@ -31,3 +31,8 @@ id
 whoami
 
 ```
+
+### References:
+- https://linuxize.com/post/how-to-create-users-in-linux-using-the-useradd-command/
+- https://www.cyberciti.biz/faq/unix-linux-groups-command-examples-syntax-usage/
+
