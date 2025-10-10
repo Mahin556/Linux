@@ -267,3 +267,7 @@ done
 | **Common Use**       | Permission verification, group management       |
 | **Related Commands** | `id`, `getent`, `usermod`, `groupadd`           |
 
+### References:
+- https://www.geeksforgeeks.org/linux-unix/groups-command-in-linux-with-examples/
+- https://man7.org/linux/man-pages/man1/groups.1.html
+- https://www.cyberciti.biz/faq/unix-linux-groups-command-examples-syntax-usage/
