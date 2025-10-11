@@ -1,13 +1,13 @@
 # 🛡️ **`sudo` Command in Linux**
 
-**Last Updated:** October 2025
 
-The **`sudo`** (superuser do) command allows a **permitted user to execute commands as the superuser (root) or another user**, as specified in the `/etc/sudoers` file. It is the **preferred way to perform administrative tasks** without directly logging in as root.
+**`sudo`** (superuser do) command allows a user to execute commands as the superuser (root) or another user, as specified in the `/etc/sudoers` file. 
+It is the **preferred way to perform administrative tasks** without directly logging in as root.
+It is all controll through /etc/sudoers file
 
 ---
 
 ## 🧠 **Purpose**
-
 * Run commands with **elevated privileges** temporarily.
 * Allow users to perform administrative tasks without sharing the root password.
 * Provide **fine-grained control** over who can execute which commands.
@@ -114,6 +114,28 @@ sudo -b apt upgrade
 ```
 
 * Executes the command in the background as root.
+
+
+### To run the previous command with sudo in a Bash-based shell:
+```bash
+sudo !!
+```
+
+### # Refresh, revalidate, and list privileges 
+```bash
+sudo -k && sudo -v && sudo -l
+```
+
+### Check Logs
+```bash
+# Debian/Ubuntu
+sudo grep -i sudo /var/log/auth.log | tail -n 20
+
+# RHEL/CentOS/Fedora
+sudo grep -i sudo /var/log/secure | tail -n 20
+```
+
+
 
 ---
 
