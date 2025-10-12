@@ -9,7 +9,7 @@
 ## **Syntax**
 
 ```bash
-ln [OPTION] TARGET [LINK_NAME]
+ln [option] [target-file] [symlink-name]
 ```
 
 * **TARGET** = the original file/directory you’re linking to.
@@ -34,7 +34,6 @@ ln [OPTION] TARGET [LINK_NAME]
 ```bash
 ln file1.txt file2.txt
 ```
-
 Now `file1.txt` and `file2.txt` point to the same inode.
 
 ---
@@ -50,6 +49,7 @@ Now `file1.txt` and `file2.txt` point to the same inode.
 
 ```bash
 ln -s /path/to/original.txt shortcut.txt
+ln -s /media/marko/VBox_GAs_6.1.38/cert ~/test-lin
 ```
 
 Now `shortcut.txt` points to `/path/to/original.txt`.
@@ -154,7 +154,27 @@ Look at the `Links:` field.
 readlink shortcut.txt
 ```
 
+* Find Broken Symbolic Links
+```bash
+find [directory] -type l ! -exec test -e {} \; -print
+find ~ -type l ! -exec test -e {} \; -print
+```
+
+* Overwrite Existing Symbolic Links
+```bash
+ln -sf [target] [destination]
+```
+The -f option forces overwriting an existing file at the destination.
+
 ---
+
+### Remove Symbolic Links
+```bash
+unlink [symlink]
+```
+```bash
+rm [symlink]
+```
 
 ## **Use Cases**
 
@@ -177,3 +197,4 @@ readlink shortcut.txt
 
 ### References:
 - https://www.freecodecamp.org/news/symlink-tutorial-in-linux-how-to-create-and-remove-a-symbolic-link/
+- https://phoenixnap.com/kb/symbolic-link-linux

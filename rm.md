@@ -25,6 +25,12 @@ rm -rf ./* #Remove Everything in Current Directory
 
 rm -ir mydir/ #Delete Files Safely with Prompt
 
+# Deleting directories with names that contain spaces/special chars
+rm -r "My Folder"
+rm -r My\ Folder
+# or use -- to mark end of options if name starts with -
+rm -r -- "-weirdname"
+
 ```
 * Delete Files Older Than X Days (with find)
 ```bash

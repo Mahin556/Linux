@@ -1,5 +1,5 @@
 - Find always to hierarchical search
-```
+```bash
 find <path>
 
 find <path> -type f
@@ -173,6 +173,19 @@ find / -user root -2000 -exec ls -ldb {} \; > /tmp/ckprm
 find directory -user root -perm -4000 -exec ls -ldb {} \; >/tmp/filename
 
 find /var/www/html -type d -exec chmod u=rwx,go=rx {} \;
+
+# delete empty directories under /path (safe)
+find /path -type d -empty -delete
+
+# delete directories named "tmp" anywhere under /path
+find /path -type d -name tmp -exec rm -r {} +
+
+# delete files older than 30 days and then empty dirs
+find /path -type f -mtime +30 -exec rm -f {} +
+find /path -type d -empty -delete
+
+# avoid crossing mount points (xdev)
+find /path -xdev -type d -name cache -exec rm -r {} +
 
 
 
