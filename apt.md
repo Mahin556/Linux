@@ -115,6 +115,7 @@ apt remove mc
 * Remove a package and its configuration files(Useful for a clean uninstall)
 ```bash
 sudo apt purge [package]
+sudo apt-get purge docker-ce docker-ce-cli containerd.io
 ```
 
 * APT Cache
@@ -311,7 +312,7 @@ sudo apt update && sudo apt upgrade
         ```bash
         sudo add-apt-repository ppa:graphics-drivers/ppa
         ```
-        
+
 * Removing Repositories
 ```bash
 sudo add-apt-repository --remove ppa:deadsnakes/ppa
