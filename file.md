@@ -165,7 +165,7 @@ The `file` command checks in this order:
 | `--mime`          | Show MIME type and encoding                     | `file --mime file.jpg`                              |                |
 | `--preserve-date` | Don’t update access time                        | `file --preserve-date myfile`                       |                |
 | `-N`              | Don’t pad filenames in output                   | `file -N myfile`                                    |                |
-| `-s`              | Read special files (like block/char devices)    | `sudo file -s /dev/sda1`                            |                |
+| `-s`              | Read special files (like block/char devices), basically fstype.    | `sudo file -s /dev/sda1`                            |                |
 | `-0`              | Use NUL character as separator (for scripts)    | `find . -print0                                     | xargs -0 file` |
 | `--help`          | Show help message                               | `file --help`                                       |                |
 | `--version`       | Show version info                               | `file --version`                                    |                |
