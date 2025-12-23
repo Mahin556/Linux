@@ -162,7 +162,7 @@ By default, `Ctrl+b` is the **prefix key** before most commands. (You can change
 
 ### **9. Useful Commands for Config**
 
-* `set -g mouse on` → Enable mouse support
+* `set -g mouse on` → Enable mouse support `tmux set -g mouse on` `Ctrl + b  then  [`
 * `set -g history-limit 10000` → Increase scrollback buffer
 * `bind r source-file ~/.tmux.conf \; display-message "Config reloaded!"` → Reload config shortcut
 
@@ -207,6 +207,10 @@ set -g status-fg white
 set -g status-interval 5
 set -g status-left-length 30
 set -g status-right-length 90
+
+#Make mouse scrolling permanent
+set -g mouse on
+
 
 # Show session, window, and pane numbers
 set -g status-left '#[fg=green][#S] '
