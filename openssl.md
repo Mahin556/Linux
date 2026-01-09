@@ -147,7 +147,22 @@ openssl x509 -in cert.pem -noout -text       # Full details
 openssl x509 -in cert.pem -noout -dates      # Validity dates
 openssl x509 -in cert.pem -noout -issuer     # Issuer
 openssl x509 -in cert.pem -noout -subject    # Subject
-openssl x509 -in cert.pem -fingerprint       # Fingerprint
+openssl x509 -in cert.pem -fingerprint       # 
+openssl x509 -in certificate.crt -noout -enddate #Show expire date
+openssl x509 -in certificate.crt -noout -serial #Show Serial number
+openssl x509 -in certificate.crt -noout -fingerprint #Show fingerprint in SHA1
+openssl x509 -in certificate.crt -noout -fingerprint -sha256 #Show fingerprint in SHA256
+openssl x509 -in certificate.crt -noout -pubkey #Show public key info
+
+#Check certificate and private key match
+openssl x509 -in certificate.crt -noout -modulus | openssl md5
+openssl rsa  -in private.key      -noout -modulus | openssl md5
+
+openssl x509 -in certificate.crt -noout -ext subjectAltName #Check SANs (DNS/IP entries)
+
+openssl x509 -in certificate.crt -noout -text | grep "Public Key Algorithm" #Check certificate type / algorithm
+
+openssl x509 -in certificate.crt -noout -subject -issuer -dates
 ```
 
 ### Verify Certificate

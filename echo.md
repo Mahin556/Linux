@@ -1,3 +1,11 @@
+### References:
+- https://www.geeksforgeeks.org/linux-unix/how-to-change-the-output-color-of-echo-in-linux/
+- https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux
+- https://superuser.com/questions/332223/echo-text-in-a-certain-color-in-a-shell-script
+- https://stackabuse.com/how-to-change-the-output-color-of-echo-in-linux/
+
+---
+
 - `echo` is a built-in command in most shells (like `bash`, `zsh`, `sh`) and also available as `/bin/echo`
 - Its job: print text/strings to standard output (stdout).
 - Widely used in:
