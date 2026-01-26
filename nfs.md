@@ -10,8 +10,9 @@ mkdir -p /k8s-data
 chmod 777 /k8s-data
 
 vi /etc/exports
-/k8s-data * (rw,sync,no_root_squash,no_subtree_check)
-/k8s-data 192.168.1.0/24 (rw,sync,no_root_squash)
+/k8s-data *(rw,sync,no_root_squash,no_subtree_check)
+/k8s-data 192.168.1.0/24(rw,sync,no_root_squash)
+/k8s-data 192.168.1.0/24(rw,sync,no_root_squash,no_subtree_check,no_all_squash,insecure)
 
 exportfs -rav
 exportfs -r
@@ -47,6 +48,12 @@ mount
 mount 192.168.29.106:/demo /mnt
 mount -t nfs <server-ip>:/k8s-data /mnt/nfs
 mount -t nfs 192.168.29.106:/k8s-data /mnt/nfs
+mount -t nfs -o vers=4 192.168.0.15:/srv/nfs/kubedata /mnt
+mount -t nfs -o vers=3 192.168.0.15:/srv/nfs/kubedata /mnt
+
+lsmod | grep nfs
+modprobe nfs
+
 
 vi /etc/fstab
 10.0.0.99:/k8s-data /mnt/nfs nfs defaults 0 0
