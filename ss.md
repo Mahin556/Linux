@@ -175,3 +175,7 @@ sudo ss -tnp dport = :443
 
 ==================================================================================
 ```
+```bash
+ss -tnp state established
+ss -tnp state established | grep -i <>
+```
