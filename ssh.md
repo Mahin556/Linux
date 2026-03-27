@@ -643,3 +643,31 @@ LoginGraceTime 20
 X11Forwarding no
 AllowTcpForwarding no
 ```
+
+---
+
+### ssh config file
+
+```bash
+cat > ~/.ssh/config <<'EOF'
+# Configuration for Server 1 (e.g., a home server)
+Host homeserver
+    HostName 192.168.1.10
+    User johndoe
+    Port 22
+    IdentityFile ~/.ssh/id_rsa_home
+    IdentitiesOnly yes
+
+# Configuration for Server 2 (e.g., a work server)
+Host workserver
+    HostName work.example.com
+    User janedoe
+    IdentityFile ~/.ssh/id_rsa_work
+    IdentitiesOnly yes #Tells SSH to only use the identity file specified in the config, which prevents SSH from trying all other keys in your ssh-agent and avoids potential authentication failures if the server has an authentication attempt limit.
+
+# Optional: Global settings for all hosts (place at the top or bottom)
+Host *
+    HashKnownHosts yes # Improves security by storing hashed representations of hostnames in the ~/.ssh/known_hosts file, preventing others from easily seeing the servers you connect to.
+    ForwardAgent yes
+EOF
+```
